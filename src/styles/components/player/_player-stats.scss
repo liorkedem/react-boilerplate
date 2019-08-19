@@ -1,0 +1,29 @@
+.player-stats {
+  background: $color-bg-body;
+  padding: $m-size;
+  justify-content: space-between;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+
+  table {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.player-stats__th {
+  th {
+    color: white;
+    font-size: $font-size-m;
+    text-align: center;
+  }
+}
+
+.player-stats__td {
+  td {
+    text-align: center;
+    color: $color-bg-header-alt2;
+    font-size: $font-size-xl;
+  }
+}

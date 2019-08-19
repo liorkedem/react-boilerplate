@@ -1,0 +1,44 @@
+.player-info {
+  background: $color-bg-body;
+  padding: $m-size;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.player-info__title {
+  color: white;
+  font-size: $font-size-xl;
+  text-decoration: none;
+  h1 {
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
+
+.player-info__subtitle {
+  color: $color-text-header;
+  padding: $s-size 0;
+  display: block;
+  justify-content: space-evenly;
+  h3 {
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
+
+.player-info__health_positive {
+  color: $color-positive;
+  h3 {
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
+
+.player-info__health_negative {
+  color: $color-negative;
+  h3 {
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
