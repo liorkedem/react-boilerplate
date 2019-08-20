@@ -30,19 +30,21 @@ const renderApp = () => {
 
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        console.log('log in by', user.uid);
-        store.dispatch(login(user.uid));
-        renderApp();
-        if (history.location.pathname === '/') {
-            history.push('/dashboard');
-        }
-    } else {
-        console.log('log out');
-        store.dispatch(logout());
-        renderApp();
-        history.push('/');
-    }
-});
+renderApp();
+
+// firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//         console.log('log in by', user.uid);
+//         store.dispatch(login(user.uid));
+//         renderApp();
+//         if (history.location.pathname === '/') {
+//             history.push('/dashboard');
+//         }
+//     } else {
+//         console.log('log out');
+//         store.dispatch(logout());
+//         renderApp();
+//         history.push('/');
+//     }
+// });
 

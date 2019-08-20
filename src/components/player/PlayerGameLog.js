@@ -6,16 +6,26 @@ export default class PlayerGameLog extends React.Component {
         super(props);
         this.state = {
             isLoaded: false,
-            selectedPlayer: undefined
+            selectedPlayer: props.selectedPlayer,
+            selectedGamelog: []
         };
     }
 
     async componentDidMount() {
-        const selectedPlayer = await remoteApi.fetchPlayerGamelog(remoteApi.dummyPlayerId);
+        const selectedGamelog = await remoteApi.fetchPlayerGamelog(this.state.selectedPlayer.ID);
         this.setState({
             isLoaded: true,
-            selectedPlayer: selectedPlayer
+            selectedGamelog: selectedGamelog
         });
+    }
+
+    
+    async componentWillReceiveProps( newProps ) {
+        const selectedGamelog = await remoteApi.fetchPlayerGamelog(newProps.selectedPlayer.ID);
+        this.setState({ 
+            selectedPlayer: newProps.selectedPlayer,
+            selectedGamelog: selectedGamelog
+         });
     }
 
     render() {
@@ -27,7 +37,7 @@ export default class PlayerGameLog extends React.Component {
             );
         }
         else {
-            const gamelog = this.state.selectedPlayer;
+            const gamelog = this.state.selectedGamelog;
 
             return (
                 <div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as remoteApi from '../../actions/remoteApi';
 import * as utils from '../../actions/utils';
 
@@ -20,7 +21,8 @@ export default class PlayerFinderItem extends React.Component {
     }
 
     onClick = () => {
-        console.log(this.state.selectedPlayer.ID);
+        console.log('click on', this.state.selectedPlayer.ID);
+
     }
 
     render() {
@@ -35,15 +37,21 @@ export default class PlayerFinderItem extends React.Component {
             const selectedPlayer = this.state.selectedPlayer;
 
             return (
+
                 <div
                     className="player-finder-item"
                     onClick={this.onClick}>
-                    <div className="player-finder-item__data-container">
-                        <div className="player-finder-item__team">{selectedPlayer.TEAM}</div>
-                        <div className="player-finder-item__name">{selectedPlayer.NAME}</div>
-                        <div className="player-finder-item__position">{selectedPlayer.POSITION}</div>
-                    </div>
+                    <Link to={{ pathname: `/player/${selectedPlayer.ID}`, state: 'flushDeal' }}>
+
+                        <div className="player-finder-item__data-container">
+                            <div className="player-finder-item__team">{selectedPlayer.TEAM}</div>
+                            <div className="player-finder-item__name">{selectedPlayer.NAME}</div>
+                            <div className="player-finder-item__position">{selectedPlayer.POSITION}</div>
+                        </div>
+                    </Link>
                 </div>
+
+
             );
         }
     }

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import * as remoteApi from '../actions/remoteApi';
 
 export default class DummyPage extends React.Component {
     constructor(props) {
@@ -10,21 +12,18 @@ export default class DummyPage extends React.Component {
     }
 
     async componentDidMount() {
-        console.log('componentDidMount');
-        const url = "http://localhost:3000/api/v1/articles/";
-        const response = await fetch(url);
-        const data = await response.json();
-        const items = data.data;
-        console.log(data);
+        const items = await remoteApi.fetchAllPlayers();
         this.setState({
             isLoaded: true,
             items: items
         });
     }
 
-    render() {
-        console.log('render');
+    onClick = (item) => {
+        console.log(item.ID);
+    }
 
+    render() {
         if (!this.state.isLoaded) {
             return (
                 <div>
@@ -33,15 +32,20 @@ export default class DummyPage extends React.Component {
             );
         }
         else {
+            let count = 0;
             return (
                 <div>
-                    <ul>
-                        {this.state.items.map(item => (
-                            <li key={item.title}>
-                                Title: {item.title} | Body: {item.body}
-                            </li>
-                        ))}
-                    </ul>
+                    {this.state.items.map(item => (
+                        <Link key={count++} to={`/player/${item.ID}`}>
+                            <div key={`id_${item.ID}`}>
+                                <div>
+                                    ID: {item.ID} | NAME: {item.NAME}
+                                </div>
+                                <button key={item.ID} onClick={() => this.onClick(item)}>{item.NAME}</button>
+                            </div>
+                        </Link>
+                    ))}
+
                 </div>
             );
         }

@@ -6,22 +6,30 @@ export default class PlayerStats extends React.Component {
         super(props);
         this.state = {
             isLoaded: false,
-            selectedPlayer: undefined
+            selectedPlayer: props.selectedPlayer,
+            selectedStats: undefined
         };
     }
 
     async componentDidMount() {
-        const selectedPlayer = await remoteApi.fetchPlayerStats(remoteApi.dummyPlayerId);
+        const selectedStats = await remoteApi.fetchPlayerStats(this.state.selectedPlayer.ID);
         this.setState({
             isLoaded: true,
-            selectedPlayer: selectedPlayer
+            selectedStats: selectedStats
         });
     }
 
+    async componentWillReceiveProps( newProps ) {
+        const selectedStats = await remoteApi.fetchPlayerStats(newProps.selectedPlayer.ID);
+        this.setState({ 
+            selectedPlayer: newProps.selectedPlayer,
+            selectedStats: selectedStats
+         });
+    }
 
 
     render() {
-        const stats = this.state.selectedPlayer;
+        const stats = this.state.selectedStats;
 
         if (!this.state.isLoaded) {
             return (

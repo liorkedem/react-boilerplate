@@ -11,7 +11,6 @@ export default class PlayerFinderList extends React.Component {
             allPlayers: props.players,
             selectedPlayer: undefined
         };
-        console.log('props players', props.players);
     }
 
     componentDidMount() {
@@ -22,11 +21,7 @@ export default class PlayerFinderList extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.players !== this.props.players) {
-            console.log('updating');
-
             const allPlayers = this.props.players;
-            console.log(allPlayers);
-
             this.setState({
                 isLoaded: true,
                 allPlayers: allPlayers,
@@ -45,7 +40,6 @@ export default class PlayerFinderList extends React.Component {
         }
         else {
             const allPlayers = this.state.allPlayers;
-            console.log('received players', this.state.allPlayers);
             return (
                 <div className="player-finder-list">
                     {

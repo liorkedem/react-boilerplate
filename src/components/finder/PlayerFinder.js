@@ -17,11 +17,7 @@ export default class PlayerFinder extends React.Component {
 
 
     async componentDidMount() {
-        console.log('mounting');
-
         this.allPlayers = await remoteApi.fetchAllPlayers();
-        console.log(this.allPlayers);
-
         this.setState({
             isLoaded: true,
             allPlayers: this.allPlayers,
@@ -31,7 +27,7 @@ export default class PlayerFinder extends React.Component {
 
     async componentDidUpdate() {
         if (!this.state.isLoaded) {
-            console.log('updating');
+            // console.log('updating');
             // this.setState({
             //     isLoaded: true,
             //     allPlayers: allPlayers,
@@ -65,7 +61,6 @@ export default class PlayerFinder extends React.Component {
             );
         }
         else {
-            console.log('RE-RENDER');
             return (
                 <div
                     className="player-finder">

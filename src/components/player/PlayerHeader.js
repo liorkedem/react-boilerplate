@@ -7,17 +7,33 @@ export default class PlayerHeader extends React.Component {
         super(props);
         this.state = {
             isLoaded: false,
-            selectedPlayer: undefined
+            selectedPlayer: props.selectedPlayer
         };
     }
 
     async componentDidMount() {
-        const selectedPlayer = await remoteApi.fetchPlayerInfo(remoteApi.dummyPlayerId);
         this.setState({
-            isLoaded: true,
-            selectedPlayer: selectedPlayer
+            isLoaded: true
         });
     }
+
+    componentWillReceiveProps( someProp ) {
+        this.setState({ 
+            selectedPlayer: someProp.selectedPlayer
+         });
+    }
+
+
+    // async componentDidUpdate(prevProps, prevState) {
+    //     if (prevProps.selectedPlayer !== this.props.selectedPlayer) {
+    //         const updatedPlayer = this.props.selectedPlayer;
+    //         this.setState({
+    //             isLoaded: true,
+    //             selectedPlayer: updatedPlayer
+    //         });
+    //         console.log('UPDATED header PLAYER IS:', this.state.selectedPlayer.NAME);
+    //     }
+    // }
 
     render() {
         if (!this.state.isLoaded) {

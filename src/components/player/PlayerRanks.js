@@ -6,22 +6,29 @@ export default class PlayerRanks extends React.Component {
         super(props);
         this.state = {
             isLoaded: false,
-            selectedPlayer: undefined
+            selectedRanks: undefined,
+            selectedPlayer: props.selectedPlayer
         };
     }
 
     async componentDidMount() {
-        const selectedPlayer = await remoteApi.fetchPlayerRanks(remoteApi.dummyPlayerId);
+        const selectedRanks = await remoteApi.fetchPlayerRanks(this.state.selectedPlayer.ID);
         this.setState({
             isLoaded: true,
-            selectedPlayer: selectedPlayer
+            selectedRanks: selectedRanks
         });
     }
 
-
+    async componentWillReceiveProps( newProps ) {
+        const selectedRanks = await remoteApi.fetchPlayerRanks(newProps.selectedPlayer.ID);
+        this.setState({ 
+            selectedPlayer: newProps.selectedPlayer,
+            selectedRanks: selectedRanks
+         });
+    }
 
     render() {
-        const stats = this.state.selectedPlayer;
+        const ranks = this.state.selectedRanks;
 
         if (!this.state.isLoaded) {
             return (
@@ -48,9 +55,9 @@ export default class PlayerRanks extends React.Component {
                                 </thead>
                                 <tbody>
                                     <tr className="player-stats__td">
-                                        <td>{stats.ROTO9}</td>
-                                        <td>{stats.ROTO8}</td>
-                                        <td>{stats.DFS}</td>
+                                        <td>{ranks.ROTO9}</td>
+                                        <td>{ranks.ROTO8}</td>
+                                        <td>{ranks.DFS}</td>
                                     </tr>
                                 </tbody>
                             </table>
