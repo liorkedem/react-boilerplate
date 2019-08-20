@@ -3,6 +3,8 @@ import * as remoteApi from '../../actions/remoteApi';
 import PlayerHeader from './PlayerHeader';
 import PlayerStats from './PlayerStats';
 import PlayerGameLog from './PlayerGameLog';
+import PlayerRanks from './PlayerRanks';
+import PlayerFinder from '../finder/PlayerFinder';
 
 export default class PlayerPage extends React.Component {
     constructor(props) {
@@ -10,17 +12,17 @@ export default class PlayerPage extends React.Component {
         this.state = {
             isLoaded: false,
             allPlayers: [],
-            thisPlayer: undefined
+            selectedPlayer: undefined
         };
     }
 
     async componentDidMount() {
         const allPlayers = await remoteApi.fetchAllPlayers();
-        const thisPlayer = await remoteApi.fetchPlayerInfo(remoteApi.dummyPlayerId);
+        const selectedPlayer = await remoteApi.fetchPlayerInfo(remoteApi.dummyPlayerId);
         this.setState({
             isLoaded: true,
             allPlayers: allPlayers,
-            thisPlayer: thisPlayer
+            selectedPlayer: selectedPlayer
         });
     }
 
@@ -35,9 +37,15 @@ export default class PlayerPage extends React.Component {
         else {
             return (
                 <div>
-                    <PlayerHeader />
-                    <PlayerStats/>
-                    <PlayerGameLog/>
+                    <div className="player-page">
+                        <PlayerFinder />
+                        <div>
+                            <PlayerHeader />
+                            <PlayerRanks />
+                            <PlayerStats />
+                            <PlayerGameLog />
+                        </div>
+                    </div>
                 </div>
             );
         }

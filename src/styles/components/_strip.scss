@@ -1,9 +1,10 @@
 .strip {
   background: $color-bg-header;
-  padding: $xs-size;
+  padding: $xxs-size;
   display: block;
   margin: 0 auto;
-  text-align: center;
+
+  text-align: left;
   h1,h2,h3,h4,h5,h6 {
     color:$color-bg-header-alt;
     text-transform: uppercase;

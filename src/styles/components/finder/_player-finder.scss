@@ -1,0 +1,19 @@
+.player-finder {
+  padding: $xxxs-size;
+  display: block;
+  height: 99vh;
+  background: lightgray;
+  // margin: 0 auto;
+   width: 40rem;
+  //  overflow: scroll;
+  //  overflow-x: hidden;
+}
+
+.player-finder__text-input {
+  width: 100%;
+  height: auto;
+  // margin: $xxxs-size;
+  margin-bottom: $xxxs-size;
+  padding: $xxxs-size;
+  font-size: $font-size-s;
+}

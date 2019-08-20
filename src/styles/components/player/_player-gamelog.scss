@@ -1,0 +1,53 @@
+.player-gamelog {
+  background: $color-bg-body;
+  padding: $m-size;
+  justify-content: space-between;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+
+  table {
+    table-layout: auto;
+    width: 100%;
+    margin: 0 auto;
+    // border-radius: 25px;
+    // border: 2px solid $color-bg-header-alt;
+
+    th {
+      text-align: center;
+    }
+    td {
+      text-align: center;
+    }
+    tr:hover td {
+      transition: background 0.3s ease;
+      background-color: $color-even !important;
+      color: $color-even-alt !important;
+    }
+  }
+}
+
+.player-gamelog__th {
+  th {
+    color: $color-bg-header-alt2;
+    font-size: $font-size-s;
+    text-align: center;
+  }
+}
+
+.player-gamelog__td {
+  td {
+    text-align: center;
+    background: lighten($color-bg-body, 10%);
+    color: white;
+    font-size: $font-size-s;
+  }
+}
+
+.player-gamelog__win {
+  color: $color-positive !important;
+}
+
+.player-gamelog__lose {
+  color: $color-negative !important;
+}

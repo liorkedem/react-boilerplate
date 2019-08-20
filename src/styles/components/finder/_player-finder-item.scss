@@ -1,0 +1,40 @@
+.player-finder-item {
+  background: white;
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: $xxxs-size;
+  text-align: left;
+
+  div:hover {
+    background-color: $color-even !important;
+    color: $color-even-alt !important;
+  }
+}
+
+.player-finder-item__data-container {
+  display: flex;
+  width: 100%;
+}
+
+.player-finder-item__team {
+  padding: $xxxs-size;
+  color: darkgray;
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  margin: 0;
+  min-width: $l-size;
+  width: auto;
+  align-self: center;
+}
+
+.player-finder-item__position {
+  @extend .player-finder-item__team;
+}
+
+.player-finder-item__name {
+  padding: $xxxs-size;
+  color: $color-bg-header;
+  font-size: $font-size-s;
+  text-transform: uppercase;
+  margin: 0;
+}

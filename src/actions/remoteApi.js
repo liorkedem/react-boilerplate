@@ -28,6 +28,14 @@ export async function fetchPlayerStats(playerid) {
     return items;
 };
 
+export async function fetchPlayerRanks(playerid) {
+    const url = `${remoteUrl}/api/v1/stats/${playerid}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const items = data.data;
+    return items;
+};
+
 
 export async function fetchPlayerGamelog(playerid) {
     const url = `${remoteUrl}/api/v1/gamelogs/${playerid}`;

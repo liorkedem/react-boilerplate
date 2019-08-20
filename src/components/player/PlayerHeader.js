@@ -7,15 +7,15 @@ export default class PlayerHeader extends React.Component {
         super(props);
         this.state = {
             isLoaded: false,
-            thisPlayer: undefined
+            selectedPlayer: undefined
         };
     }
 
     async componentDidMount() {
-        const thisPlayer = await remoteApi.fetchPlayerInfo(remoteApi.dummyPlayerId);
+        const selectedPlayer = await remoteApi.fetchPlayerInfo(remoteApi.dummyPlayerId);
         this.setState({
             isLoaded: true,
-            thisPlayer: thisPlayer
+            selectedPlayer: selectedPlayer
         });
     }
 
@@ -28,9 +28,9 @@ export default class PlayerHeader extends React.Component {
             );
         }
         else {
-            const thisPlayer = this.state.thisPlayer;
+            const selectedPlayer = this.state.selectedPlayer;
             const healthClassName =
-                (thisPlayer.HEALTH === "HEALTHY" ?
+                (selectedPlayer.HEALTH === "HEALTHY" ?
                     "player-info__health_positive" :
                     "player-info__health_negative");
 
@@ -38,20 +38,21 @@ export default class PlayerHeader extends React.Component {
                 <div className="player-info">
                     <div>
                         <div
-                            key={thisPlayer.ID}
+                            key={selectedPlayer.ID}
                             className="player-info__title">
-                            <h1>{thisPlayer.NAME}</h1>
+                            <h1>{selectedPlayer.NAME}</h1>
                         </div>
                     </div>
                     <div className="player-info__subtitle">
-                        <h3>
-                            {`${thisPlayer.POSITION} | ${thisPlayer.HEIGHT} | ${utils.convertTeamNameToFull(thisPlayer.TEAM)}`}
-                        </h3>
                         <div className={healthClassName}>
                             <h3>
-                                {thisPlayer.HEALTH}
+                                {selectedPlayer.HEALTH}
                             </h3>
                         </div>
+                        <h3>
+                            {`${selectedPlayer.POSITION} | ${selectedPlayer.HEIGHT} | ${utils.convertTeamNameToFull(selectedPlayer.TEAM)}`}
+                        </h3>
+
                     </div>
 
                 </div>
